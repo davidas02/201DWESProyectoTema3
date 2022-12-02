@@ -20,7 +20,7 @@
     /**
      *  @author David Aparicio Sir
      *  @version 1.0
-     *  ultima actualizacion 11/11/2022
+     *  ultima actualizacion 02/12/2022
      */
     require '../core/221024libreriaValidacionFormularios.php';
     $aErrores = ['dni' => null,
@@ -72,20 +72,20 @@
         $aRespuestas['dniOp'] = $_REQUEST['dniOp'];
         $aRespuestas['nombreOp'] = $_REQUEST['nombreOp'];
         $aRespuestas['alturaOp'] = $_REQUEST['alturaOp'];
-        $aRespuestas['fecha']=$_REQUEST['fecha'];
-        $aRespuestas['fechaOp']=$_REQUEST['fechaOp'];
         $aRespuestas['nombreBl']=$_REQUEST['nombreBl'];
-        $oFecha=new DateTime($aRespuestas['fecha']);
-        $time=$oFecha->format(" j/m/Y");
-        print "Su dni es $aRespuestas[dni]<br/>";
-        print "Su nombre es $aRespuestas[nombre] <br/>";
-        print "Su altura es de $aRespuestas[altura] cm<br/>";
-        print "Su dni Opcional es $aRespuestas[dniOp]<br/>";
-        print "Su nombre Opcional es $aRespuestas[nombreOp] <br/>";
-        print "Su altura Opcional es de ". ($aRespuestas['alturaOp']??0) ."cm <br/>";
-        print "Su fecha de nacimiento es ".$time  ."<br/>";
-        print "Su fecha Opcional es ". $aRespuestas['fechaOp']."<br/>";
-        print "Su nombre bloqueado es $aRespuestas[nombreBl] <br/>";
+        $oFecha=new DateTime($_REQUEST['fecha']);
+        $oFechaOp=new DateTime($_REQUEST['fechaOp']);
+        $aRespuestas['fecha']=$oFecha;
+        $aRespuestas['fechaOp']=$oFechaOp;
+        echo "Su dni es $aRespuestas[dni]<br/>";
+        echo "Su nombre es $aRespuestas[nombre] <br/>";
+        echo "Su altura es de $aRespuestas[altura] cm<br/>";
+        echo "Su dni Opcional es $aRespuestas[dniOp]<br/>";
+        echo "Su nombre Opcional es $aRespuestas[nombreOp] <br/>";
+        echo "Su altura Opcional es de ". ($aRespuestas['alturaOp']??0) ."cm <br/>";
+        echo "Su fecha de nacimiento es ".$aRespuestas['fecha']->format("j/m/Y")."<br/>";
+        echo "Su fecha Opcional es ".$aRespuestas['fechaOp']->format("j/m/Y")."<br/>";
+        echo "Su nombre bloqueado es $aRespuestas[nombreBl] <br/>";
     } else {
         ?>
         <form name="formulario" action=<?php echo $_SERVER["PHP_SELF"]; ?> method="post">
