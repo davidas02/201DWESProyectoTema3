@@ -17,7 +17,7 @@
     /**
      *  @author David Aparicio Sir
      *  @version 1.0
-     *  ultima actualizacion 03/11/2022
+     *  ultima actualizacion 16/12/2022
      */
                //Muestra del contenido de la variable $GLOBALS con print_r
             echo "<pre>";
@@ -121,24 +121,37 @@
             
             //Muestra del contenido de la variable $_COOKIE con foreach()
             echo '<h2>Mostrar $_COOKIE con foreach()</h2>';
-            echo '<table><tr><th>Clave</th><th>Valor</th></th>';
+            echo '<table><tr><th>Clave</th><th>Valor</th></tr>';
             foreach ($_COOKIE as $key => $value) {
-                echo "<td><strong>" . $key . "</strong></td>";
-                echo "<td>" . $value . "</td>";
+                echo "<tr><td><strong>" . $key . "</strong></td>";
+                echo "<td>" . $value . "</td></tr>";
             }
             echo '</table>';
             echo "</br>";
             
             //Muestra del contenido de la variable $_SESSION con foreach()
             echo '<h2>Mostrar $_SESSION con foreach()</h2>';
-            echo '<table><tr><th>Clave</th><th>Valor</th></th>';
-            foreach ($_SESSION as $key => $value) {
-                echo '<tr>';
-                echo "<td><strong>$key</strong></td>";
-                echo "<td>$value</td>";
-                echo '<tr>';
+                        if(isset($_SESSION)){
+            echo "<table><tr><th class='cajaizquierda'>Clave</th><th class='cajaderecha'>Valor</th></tr>";
+            foreach ($_SESSION as $clave=>$valor){
+                    echo "<tr>";
+                    echo "<td><strong>$clave</strong></td>";
+                    if(is_array($valor)){
+                        echo '<td><table><th>Clave</th><th>valor</th>';
+                        foreach ($valor as $c=>$v){
+                            echo "<tr><th>$c</th>";
+                            echo "<td>$v</td></tr>";
+                        }
+                        echo"</table></td>";
+                    }else{
+                       echo "<td>".$valor."</td>"; 
+                    }
+                    echo "</tr>";
             }
-            echo '</table>';
+            echo "</table>";
+            }else{
+                echo '$_SESSION esta vacia';
+            }
             echo "</br>";
             
             
